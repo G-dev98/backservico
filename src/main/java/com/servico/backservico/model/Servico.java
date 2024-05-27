@@ -35,6 +35,9 @@ public class Servico implements Serializable {
     @Column(name = "sv_dt_fim")
     private LocalDate dataFim;
 
+    @Column(name = "sv_dt_cancelamento")
+    private LocalDate dataCancelamento;
+
     @Column(name = "sv_dt_pagamento")
     private LocalDate dataPagamento;
 
@@ -43,6 +46,9 @@ public class Servico implements Serializable {
 
     @Column(name = "sv_vl_servico")
     private Double valorServico;
+
+    @Column(name = "sv_vl_pago")
+    private Double valorPago;
 
     @Column(name = "sv_status_id")
     @Enumerated(value = EnumType.ORDINAL)

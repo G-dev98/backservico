@@ -35,7 +35,6 @@ public class ServicoController {
 
     @GetMapping("/pending-payments")
     public List<Servico> findPendingPayments() throws ObjectNotFoundException {
-
         return servicoService.findPendingPayments();
     }
 
@@ -44,20 +43,19 @@ public class ServicoController {
         return servicoService.findByCanceledService();
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public Servico insert(@RequestBody Servico servico) {
         return servicoService.insert(servico);
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public Servico update(@RequestBody Servico servico) throws ObjectNotFoundException {
         return servicoService.update(servico);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) {
         servicoService.delete(id);
-        return ResponseEntity.ok().build();
     }
 
 }

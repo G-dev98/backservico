@@ -23,8 +23,6 @@ public class ServicoService {
     }
 
     public Servico insert(Servico servico) {
-        // return servicoRepository.save(servico);
-
         servico.setStatus(verificaStatus(servico));
         Servico servicoBanco = servicoRepository.saveAndFlush(servico);
         return servicoBanco;
@@ -34,11 +32,11 @@ public class ServicoService {
         servico.setStatus(verificaStatus(servico));
         Servico servicoBanco = servicoRepository.saveAndFlush(servico);
         return servicoBanco;
-
     }
 
     public void delete(Long id) {
-        servicoRepository.deleteById(id);
+        Servico servico = servicoRepository.findById(id).get();
+        servicoRepository.delete(servico);
     }
 
     // LISTAGENS
@@ -54,10 +52,10 @@ public class ServicoService {
     // REGRAS
     private Long verificaStatus(Servico servico) {
 
-        if (servico.getValorServico() != null && servico.getValorServico() > 0
+        if (servico.getValorPago() != null && servico.getValorPago() > 0
                 && servico.getDataPagamento() != null) {
             return StatusEnum.REALIZADO.id.longValue();
-        } else if (servico.getDataFim() != null) {
+        } else if (servico.getDataCancelamento() != null) {
             return StatusEnum.CANCELADO.id.longValue();
         } else {
             return StatusEnum.PENDENTE.id.longValue();

@@ -12,7 +12,7 @@ import com.servico.backservico.model.enums.StatusEnum;
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
 
-    @Query("SELECT s FROM Servico s where s.valorServico is null or s.valorServico <> null and s.valorServico = 0 ")
+    @Query("SELECT s FROM Servico s where s.status != 3 and (s.valorPago is null or s.valorPago = 0)")
     public List<Servico> findPendingPayments();
 
     @Query("SELECT s FROM Servico s where s.status = 3")
