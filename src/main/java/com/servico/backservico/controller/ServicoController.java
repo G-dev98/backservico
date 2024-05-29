@@ -12,6 +12,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import com.servico.backservico.model.Servico;
 import com.servico.backservico.service.ServicoService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ public class ServicoController {
     private ServicoService servicoService;
 
     @GetMapping("/")
+    @CrossOrigin("http://localhost:3000")
     public List<Servico> findByAll() {
         return servicoService.findAll();
     }
@@ -44,6 +46,7 @@ public class ServicoController {
     }
 
     @PostMapping("/create")
+    @CrossOrigin("http://localhost:3000")
     public Servico insert(@RequestBody Servico servico) {
         return servicoService.insert(servico);
     }
