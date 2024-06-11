@@ -2,6 +2,7 @@ package com.servico.backservico.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.Validate;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class ServicoService {
         return servicoRepository.findAll();
     }
 
+    //PERCISTÊNCIAS
+
     public Servico insert(Servico servico) {
         servico.setStatus(verificaStatus(servico));
         Servico servicoBanco = servicoRepository.saveAndFlush(servico);
@@ -37,6 +40,11 @@ public class ServicoService {
     public void delete(Long id) {
         Servico servico = servicoRepository.findById(id).get();
         servicoRepository.delete(servico);
+    }
+
+    public Servico cancelar(Servico servico) throws ObjectNotFoundException {
+        Servico servicoBanco = servicoRepository.saveAndFlush(servico);
+        return servicoBanco;
     }
 
     // LISTAGENS

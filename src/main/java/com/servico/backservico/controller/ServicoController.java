@@ -36,11 +36,13 @@ public class ServicoController {
     }
 
     @GetMapping("/pending-payments")
+    @CrossOrigin("http://localhost:3000")
     public List<Servico> findPendingPayments() throws ObjectNotFoundException {
         return servicoService.findPendingPayments();
     }
 
     @GetMapping("/canceled")
+    @CrossOrigin("http://localhost:3000")
     public List<Servico> findByCanceledService() throws ObjectNotFoundException {
         return servicoService.findByCanceledService();
     }
@@ -52,13 +54,23 @@ public class ServicoController {
     }
 
     @PutMapping("/update")
+    @CrossOrigin("http://localhost:3000")
     public Servico update(@RequestBody Servico servico) throws ObjectNotFoundException {
         return servicoService.update(servico);
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin("http://localhost:3000")
     public void delete(@PathVariable("id") Long id) {
         servicoService.delete(id);
     }
+
+
+    @PutMapping("/cancelar")
+    @CrossOrigin("http://localhost:3000")
+    public Servico cancelar(@RequestBody Servico servico) throws ObjectNotFoundException {
+        return servicoService.cancelar(servico);
+    }
+
 
 }
